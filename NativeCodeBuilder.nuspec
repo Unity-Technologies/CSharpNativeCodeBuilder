@@ -15,7 +15,7 @@
         <tags>Tag1 Tag2</tags>
 
         <dependencies>
-            <dependency id="ZipStorer" version="2.38" />
+            <dependency id="NativeBinaryManager" version="[0.1.0]" />
         </dependencies>
 
     </metadata>
@@ -23,6 +23,5 @@
         <file src="NativeCodeBuilder.targets" target="build/NativeCodeBuilder.targets" />
         <file src="scripts/linux_pre_build.sh" target="scripts/linux_pre_build.sh" />
         <file src="native_code_setting.txt" target="content/native_code_setting.txt" />
-        <file src="NativeCodeBuilder/NativeCodeBuilder/bin/Release/NativeCodeBuilder.dll" target="lib/NativeCodeBuilder.dll" />
     </files>
 </package>

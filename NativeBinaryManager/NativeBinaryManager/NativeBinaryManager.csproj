@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7864B82E-0706-4D6B-94AC-A1602801F3B4}</ProjectGuid>
+    <ProjectGuid>{658F6A2F-D0E9-4B58-BF1E-FA7EEEFF5084}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>NativeCodeBuilder</RootNamespace>
-    <AssemblyName>NativeCodeBuilder</AssemblyName>
+    <RootNamespace>NativeBinaryManager</RootNamespace>
+    <AssemblyName>NativeBinaryManager</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

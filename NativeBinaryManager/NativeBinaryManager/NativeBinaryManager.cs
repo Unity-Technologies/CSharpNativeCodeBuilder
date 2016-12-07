@@ -2,7 +2,7 @@ using System;
 using System.IO.Compression;
 using System.IO;
 
-namespace NativeCodeBuilder
+namespace NativeBinaryManager
 {
     public static class NativeBinaryManager
     {
@@ -44,10 +44,10 @@ namespace NativeCodeBuilder
                     else
                         return "linux";
 
-                case PlatformID.MacOSX:
+                    case PlatformID.MacOSX:
                     return "osx";
 
-                default:
+                    default:
                     return "windows";
             }
         }
