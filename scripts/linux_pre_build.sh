@@ -25,7 +25,7 @@ if [ -z "$PRE_BUILD_NO_TERM" ]; then
 fi
 
 
-if [ ! -e "`tail -n 2 "$PROJDIR/native_code_setting.txt" | head -n 1`" ]; then
+if [ ! -e "`sed -n 2p "$PROJDIR/native_code_setting.txt"`" ]; then
     echo "#################################################"
     echo "Your native source code directory doesn't exist!"
     echo "Edit this file to change it: $PROJDIR/native_code_setting.txt"
@@ -35,9 +35,10 @@ if [ ! -e "`tail -n 2 "$PROJDIR/native_code_setting.txt" | head -n 1`" ]; then
     exit 1
 fi
 
-NATIVE_DIR="$( cd `tail -n 2 "$PROJDIR/native_code_setting.txt" | head -n 1` && pwd )"
+NATIVE_DIR="$( cd `sed -n 2p "$PROJDIR/native_code_setting.txt"` && pwd )"
 BUILD_DIR="$NATIVE_DIR/build_$CONFIG"
-C_DLL="$BUILD_DIR/lib`tail -n 1 "$PROJDIR/native_code_setting.txt"`.so"
+C_DLL="$BUILD_DIR/lib`sed -n 3p "$PROJDIR/native_code_setting.txt"`.so"
+CMAKE_ARGS=`sed -n 4p "$PROJDIR/native_code_setting.txt"`
 
 if [ ! -e "$BUILD_DIR" ]; then
     mkdir "$BUILD_DIR"
@@ -47,7 +48,8 @@ fi
 cd "$BUILD_DIR"
 if [ $? -ne 0 ]; then exit 1; fi
 
-cmake .. -DCMAKE_BUILD_TYPE=$CONFIG
+echo cmake .. $CMAKE_ARGS -DCMAKE_BUILD_TYPE=$CONFIG
+cmake .. $CMAKE_ARGS -DCMAKE_BUILD_TYPE=$CONFIG
 if [ $? -ne 0 ]; then exit 1; fi
 
 make
