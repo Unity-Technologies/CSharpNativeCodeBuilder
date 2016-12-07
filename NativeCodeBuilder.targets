@@ -11,6 +11,6 @@
         <Message Importance="high" Text="Message from MyNuGetCustomTarget. Configuration: $(ProjectDir)" />
 
         <Exec Condition="'$(OS)' != 'Windows_NT'" command="/bin/bash &quot;$(MSBuildThisFileDirectory)../scripts/linux_pre_build.sh&quot; &quot;$(ProjectDir)&quot; &quot;$(ProjectConfigName)&quot;" />
-        <Exec Condition="'$(OS)' == 'Windows_NT'" command="&quot;$(SolutionDir)/scripts/windows_pre_build.bat&quot; &quot;$(ProjectDir)&quot; &quot;$(ConfigurationName)&quot; $(PlatformName)" />
+        <Exec Condition="'$(OS)' == 'Windows_NT'" command="&quot;$(MSBuildThisFileDirectory)..\scripts\windows_pre_build.bat&quot; &quot;$(ProjectDir)&quot; &quot;$(ConfigurationName)&quot; $(PlatformName)" />
     </Target>
 </Project>
