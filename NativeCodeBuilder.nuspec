@@ -22,6 +22,8 @@
     <files>
         <file src="NativeCodeBuilder.targets" target="build/NativeCodeBuilder.targets" />
         <file src="scripts/linux_pre_build.sh" target="scripts/linux_pre_build.sh" />
+        <file src="scripts/windows_pre_build.bat" target="scripts/windows_pre_build.bat" />
+        <file src="scripts/windows_zip.ps1" target="scripts/windows_zip.ps1" />
         <file src="native_code_setting.txt" target="content/native_code_setting.txt" />
     </files>
 </package>

@@ -1,5 +1,5 @@
 all: clean
-	cd NativeBinaryManager && xbuild NativeBinaryManager.sln /target:Build /p:Configuration=Release
+	cd NativeBinaryManager && nuget restore NativeBinaryManager.sln && xbuild NativeBinaryManager.sln /target:Build /p:Configuration=Release
 	nuget pack NativeBinaryManager.nuspec
 	nuget pack NativeCodeBuilder.nuspec
 
