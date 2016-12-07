@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="NativeCodeBuilder/NativeBinaryManager.cs">
     <Files>
-      <File FileName="NativeCodeBuilder/NativeBinaryManager.cs" Line="5" Column="28" />
+      <File FileName="NativeCodeBuilder/NativeBinaryManager.cs" Line="26" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
