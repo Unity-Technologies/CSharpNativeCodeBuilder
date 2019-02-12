@@ -1,6 +1,8 @@
 set "PROJDIR=%~1"
 set "CONFIG=%~2"
-set "REALARCH=%~3"
+set "GENERATOR=%~3"
+set "REALARCH=%~4"
+
 
 if %REALARCH%==x64 (
 	set "ARCH= Win64"
@@ -63,8 +65,9 @@ set "binfile=native_code_windows_%REALARCH%"
 :: delete the old one first, just to be sure
 if exist "%PROJDIR%\embedded_files\%binfile%" del "%PROJDIR%\embedded_files\%binfile%"
 
-echo cmake .. %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=inst -G "Visual Studio 14%ARCH%"
-cmake .. %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=inst -G "Visual Studio 14%ARCH%"
+echo cmake .. %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=inst -G "%GENERATOR%%ARCH%"
+cmake .. %CMAKE_ARGS% -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=inst -G "%GENERATOR%%ARCH%"
+
 if %errorlevel% neq 0 exit 1
 cmake --build . --target install --config %CONFIG%
 if %errorlevel% neq 0 (
