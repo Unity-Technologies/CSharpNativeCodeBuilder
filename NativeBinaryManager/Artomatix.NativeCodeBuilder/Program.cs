@@ -137,8 +137,10 @@ namespace Artomatix.NativeCodeBuilder
 
             for (var index = 2; index < nativeSettings.Length - 1; index++)
             {
-                var dllToCopy = $"{buildDir}/inst/lib/{nativeSettings[index]}.{dllExtension}";
-                File.Copy(dllToCopy, Path.Combine(embeddedFilesPath, Path.GetFileName(dllToCopy)), overwrite: true);
+                var prefix = platform != Platform.Windows ? "lib" : string.Empty;
+                var dllToCopy = $"{buildDir}/inst/lib/{prefix}{nativeSettings[index]}.{dllExtension}";
+                var filename = Path.GetFileNameWithoutExtension(dllToCopy);
+                File.Copy(dllToCopy, Path.Combine(embeddedFilesPath, $"{filename}.dll"), overwrite: true);
             }
 
             Console.WriteLine("Work complete");
