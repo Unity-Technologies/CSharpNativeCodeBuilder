@@ -1,10 +1,36 @@
 using System;
-using System.IO.Compression;
 using System.IO;
+using System.IO.Compression;
 
-namespace NativeBinaryManager
+namespace Artomatix.NativeBinaryManager
 {
-    public static class NativeBinaryManager
+    public enum Platform
+    {
+        Windows,
+        OSX,
+        Linux
+    }
+
+    public static class Ext
+    {
+        public static string ToFriendlyString(this Platform pt)
+        {
+            switch (pt)
+            {
+                case Platform.Linux:
+                    return "Linux";
+
+                case Platform.OSX:
+                    return "OSX";
+
+                default:
+                case Platform.Windows:
+                    return "Windows";
+            }
+        }
+    }
+
+    public static class NativeBinaryExtractor
     {
         public static void ExtractNativeBinary(Stream resourceStream, string destPath)
         {
@@ -13,7 +39,7 @@ namespace NativeBinaryManager
             // using ZipStorer (nuget pkg) here instead of ZipArchive (.NET built in) because older versions of mono don't support it
             using (var zip = ZipStorer.Open(zipStream, FileAccess.Read))
             {
-                string nativeCodeFilename = "native_code_" + getCurrentPlatform () + "_" + getArchString();
+                string nativeCodeFilename = $"native_code_{GetCurrentPlatform().ToFriendlyString().ToLower()}_{GetArchString()}";
                 foreach (var entry in zip.ReadCentralDir())
                 {
                     if (entry.FilenameInZip == nativeCodeFilename)
@@ -29,7 +55,7 @@ namespace NativeBinaryManager
             }
         }
 
-        private static string getCurrentPlatform()
+        public static Platform GetCurrentPlatform()
         {
             switch (Environment.OSVersion.Platform)
             {
@@ -40,19 +66,23 @@ namespace NativeBinaryManager
                         & Directory.Exists("/System")
                         & Directory.Exists("/Users")
                         & Directory.Exists("/Volumes"))
-                        return "osx";
+                    {
+                        return Platform.OSX;
+                    }
                     else
-                        return "linux";
+                    {
+                        return Platform.Linux;
+                    }
 
-                    case PlatformID.MacOSX:
-                    return "osx";
+                case PlatformID.MacOSX:
+                    return Platform.OSX;
 
-                    default:
-                    return "windows";
+                default:
+                    return Platform.Windows;
             }
         }
 
-        private static string getArchString()
+        public static string GetArchString()
         {
             if (Environment.Is64BitProcess)
                 return "x64";

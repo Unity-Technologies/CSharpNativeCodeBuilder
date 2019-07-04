@@ -1,1 +1,14 @@
-*.nupkg
+TempDLLs/*
+*.swp
+*.swo
+*.sql
+*.opendb
+*.pyc
+*.so
+*.zip
+*.vs
+packages
+.paket/paket.exe
+paket.local
+built_packages
+.vs

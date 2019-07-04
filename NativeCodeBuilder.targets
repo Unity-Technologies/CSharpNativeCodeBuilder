@@ -8,7 +8,7 @@
         </BuildDependsOn>  
     </PropertyGroup>
     <Target Name="BuildNativeCode">
-        <Exec Condition="'$(OS)' != 'Windows_NT'" command="/bin/bash &quot;$(MSBuildThisFileDirectory)../scripts/linux_pre_build.sh&quot; &quot;$(ProjectDir)&quot; &quot;$(ConfigurationName)&quot;" />
-	<Exec Condition="'$(os)' == 'Windows_NT'" command="&quot;$(MSBuildThisFileDirectory)..\scripts\windows_pre_build.bat&quot; &quot;$(ProjectDir)&quot; &quot;$(ConfigurationName)&quot; &quot;Visual Studio $(MSBuildToolsVersion.Substring(0, 2))&quot; &quot;$(PlatformName)&quot;" />
+        <Exec Condition="'$(OS)' != 'Windows_NT'" command="mono &quot;$(MSBuildThisFileDirectory)../scripts/Artomatix.NativeCodeBuilder.exe&quot; &quot;$(ProjectDir)&quot; &quot;$(ConfigurationName)&quot; &quot;Visual Studio $(MSBuildToolsVersion.Substring(0, 2))&quot; &quot;$(PlatformName)&quot;" />
+	<Exec Condition="'$(os)' == 'Windows_NT'" command="&quot;$(MSBuildThisFileDirectory)..\scripts\Artomatix.NativeCodeBuilder.exe&quot; &quot;$(ProjectDir)&quot; &quot;$(ConfigurationName)&quot; &quot;Visual Studio $(MSBuildToolsVersion.Substring(0, 2))&quot; &quot;$(PlatformName)&quot;" />
     </Target>
 </Project>

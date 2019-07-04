@@ -1,0 +1,5 @@
+RESTRICTION: == net46
+NUGET
+  remote: https://api.nuget.org/v3/index.json
+    CommandLineParser (1.9.71)
+    ZipStorer (2.38)
