@@ -5,7 +5,8 @@
 	<version>1.0.0</version>
         <authors>wheybags</authors>
 		<owners>Artomatix Ltd</owners>
-        <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+		<licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+		<description>a</description>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<copyright>Copyright Artomatix 2019</copyright>
 		<dependencies>

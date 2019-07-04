@@ -63,9 +63,9 @@ namespace Artomatix.NativeCodeBuilder
             if (!Directory.Exists(nativeCodePath))
             {
                 Console.Error.Write(
-                    "Your native source code directory doesn't exist!\n" +
+                    $"Your native source code directory ({nativeCodePath}) doesn't exist!\n" +
                     $"Edit this file to change it: {nativeSettingsPath}\n" +
-                    $"Current contents:{string.Join("", nativeSettings)}");
+                    $"Current contents:{string.Join(Environment.NewLine, nativeSettings)}");
 
                 return (int)Error.NativeCodePathNotFound;
             }
