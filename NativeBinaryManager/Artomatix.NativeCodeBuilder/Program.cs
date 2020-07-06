@@ -33,19 +33,34 @@ namespace Artomatix.NativeCodeBuilder
             var target = args[1];
 
             string generator = null;
+            string buildTools = "v141";
+            bool vs2019 = false;
+
 
             if (args.Length > 2)
             {
                 generator = args[2];
-            }
 
+                if (generator == "Visual Studio Cu" || generator == "Visual Studio Current")
+                {
+                    generator = "Visual Studio 16";
+                    buildTools = "v142";
+                    vs2019 = true;
+                }
+            }
+            
             var platform = NativeBinaryExtractor.GetCurrentPlatform();
 
             var originalArch = NativeBinaryExtractor.GetArchString();
 
-            var arch = Environment.Is64BitProcess && platform == Platform.Windows
+            var arch = Environment.Is64BitProcess && platform == Platform.Windows && !vs2019
                 ? "Win64"
                 : string.Empty;
+
+            if (vs2019)
+            {
+                arch = originalArch;
+            }
 
             var nativeSettingsPath = $"{projectDir}/native_code_setting.txt";
 
@@ -82,11 +97,24 @@ namespace Artomatix.NativeCodeBuilder
 
             var generatorArgument = generator != null ? $"-G \"{generator} {arch}\" " : "";
 
-            var cfargs = ".. " +
+            string cfargs;
+
+            if (vs2019)
+            {
+                cfargs = ".. " +
+                    $"-G \"{generator}\" " +
+                    $"-A {arch} " +
+                    $"-T {buildTools} " +
+                    $"{cmakeArgs} " +
+                    $"-DCMAKE_INSTALL_PREFIX=inst";
+            }
+            else
+            {
+                cfargs = ".. " +
                 $"{cmakeArgs} " +
-                $"-DCMAKE_BUILD_TYPE=${target} " +
                 generatorArgument +
                 "-DCMAKE_INSTALL_PREFIX=inst";
+            }
 
             var cmakeConfigureLaunchArgs = new ProcessStartInfo("cmake",
                 cfargs)
