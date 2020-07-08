@@ -87,6 +87,8 @@ namespace Artomatix.NativeCodeBuilder
 
             var buildDir = Path.Combine(nativeCodePath, $"build_{target}_{originalArch}");
             var cmakeArgs = nativeSettings.Last();
+            Console.WriteLine("buildDir is " + buildDir);
+            Console.WriteLine("cmakeArgs is " + cmakeArgs);
 
             if (!Directory.Exists(buildDir))
             {
@@ -116,6 +118,7 @@ namespace Artomatix.NativeCodeBuilder
                 "-DCMAKE_INSTALL_PREFIX=inst";
             }
 
+            Console.WriteLine("CFargs is " + cfargs);
             var cmakeConfigureLaunchArgs = new ProcessStartInfo("cmake",
                 cfargs)
             {
