@@ -37,6 +37,8 @@ namespace Artomatix.NativeCodeBuilder
             bool vs2019 = false;
 
 
+            bool vs2019 = false;
+
             if (args.Length > 2)
             {
                 generator = args[2];
