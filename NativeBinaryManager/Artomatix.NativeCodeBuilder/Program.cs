@@ -33,6 +33,9 @@ namespace Artomatix.NativeCodeBuilder
             var target = args[1];
 
             string generator = null;
+            string buildTools = "v141";
+            bool vs2019 = false;
+
 
             bool vs2019 = false;
 
@@ -43,11 +46,11 @@ namespace Artomatix.NativeCodeBuilder
                 if (generator == "Visual Studio Cu" || generator == "Visual Studio Current")
                 {
                     generator = "Visual Studio 16";
-
+                    buildTools = "v142";
                     vs2019 = true;
                 }
             }
-
+            
             var platform = NativeBinaryExtractor.GetCurrentPlatform();
 
             var originalArch = NativeBinaryExtractor.GetArchString();
@@ -86,6 +89,8 @@ namespace Artomatix.NativeCodeBuilder
 
             var buildDir = Path.Combine(nativeCodePath, $"build_{target}_{originalArch}");
             var cmakeArgs = nativeSettings.Last();
+            Console.WriteLine("buildDir is " + buildDir);
+            Console.WriteLine("cmakeArgs is " + cmakeArgs);
 
             if (!Directory.Exists(buildDir))
             {
@@ -103,7 +108,7 @@ namespace Artomatix.NativeCodeBuilder
                 cfargs = ".. " +
                     $"-G \"{generator}\" " +
                     $"-A {arch} " +
-                    $"-T v141 " +
+                    $"-T {buildTools} " +
                     $"{cmakeArgs} " +
                     $"-DCMAKE_INSTALL_PREFIX=inst";
             }
@@ -114,6 +119,8 @@ namespace Artomatix.NativeCodeBuilder
                 generatorArgument +
                 "-DCMAKE_INSTALL_PREFIX=inst";
             }
+
+            Console.WriteLine("CFargs is " + cfargs);
             var cmakeConfigureLaunchArgs = new ProcessStartInfo("cmake",
                 cfargs)
             {
