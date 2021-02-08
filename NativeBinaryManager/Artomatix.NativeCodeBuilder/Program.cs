@@ -35,10 +35,7 @@ namespace Artomatix.NativeCodeBuilder
             string generator = null;
             string buildTools = "v141";
             bool vs2019 = false;
-
-
-            bool vs2019 = false;
-
+             
             if (args.Length > 2)
             {
                 generator = args[2];
@@ -134,7 +131,8 @@ namespace Artomatix.NativeCodeBuilder
 
             if (cmakeConfigureProcess.ExitCode != 0)
             {
-                Console.Error.WriteLine($"CMake exited with non-zero error code: {cmakeConfigureProcess.ExitCode}");
+                Console.Error.WriteLine($"CMake exited with non-zero error code: {cmakeConfigureProcess.ExitCode}.");
+                Console.Error.WriteLine($"Deleting the {buildDir} directory might fix this.");
 
                 return (int)Error.CMakeConfigureStepError;
             }
