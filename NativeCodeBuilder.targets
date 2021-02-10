@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <!-- don't condition this on the existence of the nativecodebuilder, as we don't want it to fail silently -->
-  <Target Name="BuildNativeCode" 
-		  BeforeTargets="BeforeRebuild">
+  <Target Name="BuildNativeCode" >
     <Exec 
         Condition="'$(OS)' != 'Windows_NT'" 
         Command="mono &quot;$(SolutionDir)../packages/Artomatix.NativeCodeBuilder/scripts/Artomatix.NativeCodeBuilder.exe&quot; &quot;$(ProjectDir)&quot; &quot;$(NativeConfigurationName)&quot;" />
@@ -21,12 +20,16 @@
     
   </Target>
   
-  <!-- Always build native code on linux, jenkins needs this every time to ensure the TempDLLs folder exists: -->
-  <Target Name="BuildNativeCodeLinux" 
-		  BeforeTargets="BeforeBuild">
-    <Exec 
-        Condition="'$(OS)' != 'Windows_NT'" 
-        Command="mono &quot;$(SolutionDir)../packages/Artomatix.NativeCodeBuilder/scripts/Artomatix.NativeCodeBuilder.exe&quot; &quot;$(ProjectDir)&quot; &quot;$(NativeConfigurationName)&quot;" />
+  <Target Name="BuildNativeCodeOnRebuild" 
+		  BeforeTargets="BeforeRebuild">
+    <CallTarget Targets="BuildNativeCode"/>    
+  </Target>
+  
+  <!-- Always build native code when not building from visual studio, jenkins needs this every time to ensure the TempDLLs folder exists: -->
+  <Target Name="BuildNativeCodeNonVS" 
+		  BeforeTargets="BeforeBuild"
+		  Condition="'$(VisualStudioDir)' == ''" >
+	<CallTarget Targets="BuildNativeCode"/>
   </Target>
   <!--/+:cnd:noEmit-->
 </Project>
