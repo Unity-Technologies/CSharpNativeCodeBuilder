@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NativeCodeSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+        <!-- Path to your native codebase with a CMakeLists.txt file -->
+    <PathToNativeCodeBase>../../Native/</PathToNativeCodeBase>
+        
+        <!-- Shared Library names to copy post build -->
+    <DLLTargets>
+        <Target>Target</Target>
+    </DLLTargets>
+    
+        <!-- Additional arguments to pass to cmake -->
+    <CMakeArguments>-DCMAKE_DEBUG_POSTFIX=</CMakeArguments>
+        
+        <!-- Optional base build path --> 
+    <BuildPathBase>build</BuildPathBase>
+</NativeCodeSettings>

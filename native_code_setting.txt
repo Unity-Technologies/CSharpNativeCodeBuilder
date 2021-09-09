@@ -1,3 +1,0 @@
-### LEAVE THIS LINE HERE - edit the path on the next line to be the relative path from your project dir (not sln dir) to your native code folder (where CMakeLists.txt is). Edit the second line to be your cmake library name (the name you pass to add_library). Edit the second line to be any custom cmake params you need. Leave empty if you don't need any ###
-../native_code/
-NativeCode
