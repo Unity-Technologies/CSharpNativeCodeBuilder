@@ -12,7 +12,7 @@
   <Target Name="BuildNativeCode" >
     <Exec 
         Condition="'$(OS)' != 'Windows_NT'" 
-        Command="mono &quot;$(SolutionDir)../packages/Artomatix.NativeCodeBuilder/scripts/Artomatix.NativeCodeBuilder.exe&quot; &quot;$(ProjectDir)&quot; &quot;$(NativeConfigurationName)&quot;" />
+        Command="bash &quot;$(SolutionDir)../packages/Artomatix.NativeCodeBuilder/scripts/native_code_builder.sh&quot; &quot;$(ProjectDir)&quot; &quot;$(NativeConfigurationName)&quot;" />
 
     <Exec 
         Condition="'$(OS)' == 'Windows_NT'" 

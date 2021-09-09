@@ -13,3 +13,4 @@ paket.local
 built_packages
 .vs
 launchSettings.json
+linux/

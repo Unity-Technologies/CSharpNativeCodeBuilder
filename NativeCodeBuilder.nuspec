@@ -9,15 +9,17 @@
         <description>a</description>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <copyright>Copyright Artomatix 2019</copyright>
-        <dependencies>
-            <dependency id="ZipStorer" version="2.38" />
-        </dependencies>
 
     </metadata>
 
     <files>
         <file src="NativeCodeBuilder.targets" target="build/NativeCodeBuilder.targets" />
-        <file src="NativeBinaryManager/Artomatix.NativeCodeBuilder/bin/x64/Release/netcoreapp3.1/Artomatix.NativeCodeBuilder.exe" target="scripts/Artomatix.NativeCodeBuilder.exe" />
-        <file src="NativeCodeSetting.xml" target="content/NativeCodeSetting.xml" />
+        <file src="linux/Artomatix.NativeCodeBuilder" target="scripts/Artomatix.NativeCodeBuilder" />
+        <file src="NativeCodeBuilder/Artomatix.NativeCodeBuilder/bin/x64/Release/netcoreapp3.1/Artomatix.NativeCodeBuilder.exe" target="scripts/Artomatix.NativeCodeBuilder.exe" />
+        <file src="NativeCodeBuilder/Artomatix.NativeCodeBuilder/bin/x64/Release/netcoreapp3.1/Artomatix.NativeCodeBuilder.dll" target="scripts/Artomatix.NativeCodeBuilder.dll" />
+	    <file src="NativeCodeBuilder/Artomatix.NativeCodeBuilder/bin/x64/Release/netcoreapp3.1/Artomatix.NativeCodeBuilder.runtimeconfig.json" target="scripts/Artomatix.NativeCodeBuilder.runtimeconfig.json"/>	
+        <file src="NativeCodeBuilder/Artomatix.NativeCodeBuilder/bin/x64/Release/netcoreapp3.1/CommandLine.dll" target="scripts/CommandLine.dll" />
+        <file src="native_code_builder.sh" target="scripts/native_code_builder.sh" />
+        <file src="NativeCodeSettings.xml" target="content/NativeCodeSettings.xml" />
     </files>
 </package>
