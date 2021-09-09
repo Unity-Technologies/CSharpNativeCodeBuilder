@@ -8,7 +8,8 @@ TempDLLs/*
 *.zip
 *.vs
 packages
-.paket/paket.exe
+.paket/
 paket.local
 built_packages
 .vs
+launchSettings.json

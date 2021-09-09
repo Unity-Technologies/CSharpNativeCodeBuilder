@@ -1,8 +1,7 @@
 # update misc/jenkins/verify_target_framework_versions.sh if you change this
- framework: net46
+ framework: netcoreapp3.1
 
 source https://api.nuget.org/v3/index.json
 source ./built_packages
 
-nuget ZipStorer 2.38 framework: >= net45
-nuget CommandLineParser 1.9.71
+nuget CommandLineParser 2.8.0
